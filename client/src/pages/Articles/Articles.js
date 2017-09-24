@@ -3,9 +3,9 @@ import DeleteBtn from "../../components/DeleteBtn";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../../components/Grid";
+import { Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
-import { Input, TextArea, FormBtn } from "../../components/Form";
+import { Input, FormBtn } from "../../components/Form";
 
 class Articles extends Component {
   state = {
@@ -14,24 +14,6 @@ class Articles extends Component {
     author: "",
     startYear: "",
     endYear: ""
-  };
-
-  componentDidMount() {
-    this.loadArticles();
-  }
-
-  loadArticles = () => {
-    API.getArticles()
-      .then(res =>
-        this.setState({ articles: res.data, topic: "", author: "", startYear: "", endYear: "" })
-      )
-      .catch(err => console.log(err));
-  };
-
-  deleteArticle = id => {
-    API.deleteArticle(id)
-      .then(res => this.loadArticles())
-      .catch(err => console.log(err));
   };
 
   handleInputChange = event => {
@@ -43,10 +25,17 @@ class Articles extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
+
     if (this.state.topic) {
-      API.searchArticles(this.state.topic)
-        .then(res => this.loadArticles())
+      if (this.state.startYear && this.state.endYear) {
+        API.searchArticles(this.state.topic, this.state.startYear, this.state.endYear)
+        .then(res => this.setState({ articles: res.data.response.docs}))
         .catch(err => console.log(err));
+      } else if (!this.state.startYear || !this.state.endYear) {
+        API.searchArticles(this.state.topic)
+        .then(res => this.setState({ articles: res.data.response.docs}))
+        .catch(err => console.log(err));
+      }
     }
   };
 
@@ -90,9 +79,9 @@ class Articles extends Component {
               <List>
                 {this.state.articles.map(article => (
                   <ListItem key={article._id}>
-                    <Link to={"/articles/" + article._id}>
+                    <Link to={article.web_url}>
                       <strong>
-                        {article.title} by {article.author}
+                        {article.headline.main} by {article.byline.original}
                       </strong>
                     </Link>
                     <DeleteBtn onClick={() => this.deleteArticle(article._id)} />
