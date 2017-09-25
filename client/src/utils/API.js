@@ -4,11 +4,12 @@ import config from "../config/config.js";
 export default {
   // Gets all articles
   searchArticles: function(keyWords, startDate, endDate) {
-    console.log("Here: ", keyWords, startDate, endDate);
+    let aKey = (process.env.authKey || config.authKey);
+
     if (startDate && endDate) {
-      return axios.get(`https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${config.authKey}&q=${keyWords}&begin_date=${startDate}&end_date=${endDate}`);
+      return axios.get(`https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${aKey}&q=${keyWords}&begin_date=${startDate}&end_date=${endDate}`);
     } else if ((keyWords) && (!startDate || !endDate)) {
-      return axios.get(`https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${config.authKey}&q="${keyWords}"`);
+      return axios.get(`https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${aKey}&q="${keyWords}"`);
     }
   },
   // Gets the article with the given id
