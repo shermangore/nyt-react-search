@@ -1,62 +1,36 @@
-# Create React Express App
+# NYT React Search
+A Node/Express/Mongoose/React app that allows a user to search the New York Times by keyword and date range (optional), then store select articles in a MongoDB collection.  Once the articles are stored, the user can view or delete each one.
+.
+## Installation
+1) git clone the repository to your local computer
+2) git bash into the directory created by the clone
+3) run yarn install
+4) run yarn start
 
-## About This Boilerplate
+## Usage
+### Enter a keyword to search for, click the save button to save an article to the database.  View saved articles and click to read (original, not saved) or click delete to remove article.
+1) Search Page
+![alt text](https://s3.amazonaws.com/bamazon-screenshots/NYT_1.gif "Search for Articles")
 
-This setup allows for a monolithic Node/Express/React app which can be easily deployed to Heroku.
+2) View Results and Save an Article
+![alt text](https://s3.amazonaws.com/bamazon-screenshots/NYT_2.gif "Save Article")
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+3) View/Delete Saved Articles
+![alt text](https://s3.amazonaws.com/bamazon-screenshots/NYT_3.gif "View/Delete Saved Articles")
 
-## Starting the app locally
 
-Start by installing front and backend dependencies. While in this directory, run the following commands:
+## Contributing
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request :D
 
-```
-yarn install
-cd client
-yarn install
-cd ..
-``
+## History
+Created 9/24/2017
 
-After both installations complete, run the following command in your terminal:
+## Credits
+Sherman Gore
 
-```
-yarn start
-```
-
-That's it, your app should be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
-
-## Deployment (Heroku)
-
-### Create a Git Repo
-
-Once you're ready to deploy, start by making sure your project is a git repository. If so, proceed to the next section, otherwise run the following commands in your terminal:
-
-```
-git init
-git add .
-git commit -m "Initial commit"
-```
-
-### Heroku
-
-Make sure that you have a Heroku app created for this project. If so, proceed to the next section, otherwise run the following command in your terminal:
-
-```
-heroku create
-```
-
-Optionally add an argument for your application's name after `create`, e.g.
-
-```
-heroku myawesomeapp
-```
-
-### Deploying
-
-After confirming that you have an up to date git repository and a Heroku app created, run the following command to deploy:
-
-```
-yarn deploy
-```
-
-If all previous steps were followed correctly, your application should be deployed to Heroku!
+## License
+MIT
