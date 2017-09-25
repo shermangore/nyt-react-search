@@ -1,19 +1,8 @@
 import React from "react";
+import NewspaperIcon from "mdi-react/NewspaperIcon"
 
 const Nav = () =>
-  <nav className="navbar navbar-inverse navbar-top">
-    <div className="container-fluid">
-      <div className="navbar-header">
-        <button type="button" className="collapsed navbar-toggle">
-          <span className="sr-only">Toggle navigation</span>
-          <span className="icon-bar" /> <span className="icon-bar" />
-          <span className="icon-bar" />
-        </button>
-        <a href="/" className="navbar-brand text-center">
-          New York Times Article Scrubber
-        </a>
-      </div>
-    </div>
-  </nav>;
-
+  <div className="text-center" style={{ backgroundColor: "#20315A", height: "15rem", paddingTop: "2.5rem" }}>
+    <h1 style={{ color: "white" }}><NewspaperIcon className="mdi-light" height="64" width="64" /> New York Times Article Scrubber</h1>
+  </div>;
 export default Nav;

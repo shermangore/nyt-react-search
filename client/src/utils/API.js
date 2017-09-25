@@ -11,16 +11,23 @@ export default {
       return axios.get(`https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${config.authKey}&q="${keyWords}"`);
     }
   },
-  // Gets the book with the given id
-  getSavedArticles: function() {
-    return axios.get("/api/saved/");
+  // Gets the article with the given id
+  getArticles: function() {
+    return axios.get("/api/articles/");
   },
-  // Deletes the book with the given id
+  viewArticles: function() {
+    return axios.get("/api/articles/");
+  },
+  // Gets the article with the given id
+  getArticle: function(id) {
+    return axios.get("/api/articles/" + id);
+  },
+  // Deletes the article with the given id
   deleteArticle: function(id) {
-    return axios.delete("/api/saved/" + id);
+    return axios.delete("/api/articles/" + id);
   },
-  // Saves a book to the database
+  // Saves a article to the database
   saveArticle: function(articleData) {
-    return axios.post("/api/saved/", articleData);
+    return axios.post("/api/articles", articleData);
   }
 };
